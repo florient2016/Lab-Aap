@@ -9,3 +9,7 @@
       ansible.builtin.package:
         name: "{{ PackageName }}" # Variable will be set on AAP inventory 
         state: latest
+      register: package_status
+    - debug:
+        msg: "{{ PackageName }} package is {{ 'installed' if package_status.rc == 0 else 'not installed' }}"
+    
